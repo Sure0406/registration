@@ -22,7 +22,6 @@ function App() {
     Name : "vimal"
 },
 ]);
-//console.log(items.length)
 const handleCheck = (id)=> {
 const listItem = items.map ((item) => item.id === id ? {...item, checked : !item.checked} : item)
 setItems(listItem)
