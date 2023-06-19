@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css'
+import Header from './Header';
+import Footer from './Footer';
+import { useState } from 'react';
+import AddList from './AddList';
 function App() {
+
+  const[items, setItems] = useState([{
+    id : 1,
+    checked : true,
+    Name : "Arun"
+},
+{
+    id : 2,
+    checked : true,
+    Name : "kamal"
+},
+{
+    id : 3,
+    checked : true,
+    Name : "vimal"
+},
+]);
+//console.log(items.length)
+const handleCheck = (id)=> {
+const listItem = items.map ((item) => item.id === id ? {...item, checked : !item.checked} : item)
+setItems(listItem)
+console.log(listItem)
+}
+
+const handleDelete = (id) => {
+const listDelete = items.filter ((item) => item.id !== id)
+setItems(listDelete)
+}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> 
+         { <Header 
+            item = {items}
+            handleCheck = {handleCheck ()}
+            handleDelete = {handleDelete ()}
+         /> }
+         {/* <Footer 
+           data = {items.length}
+         /> */}
+         <AddList />
     </div>
+   
   );
 }
 
